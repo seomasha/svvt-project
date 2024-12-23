@@ -30,9 +30,8 @@ public class PumaTest {
         System.out.println("Actual title: " + actualTitle);
         assertEquals("PUMA GERMANY | Shoes, Apparel and Accessories",
                 actualTitle, "Title does not match");
-        Thread.sleep(1000);
+        Thread.sleep(5000);
     }
-
 
     @AfterAll
     public static void tearDown() {
