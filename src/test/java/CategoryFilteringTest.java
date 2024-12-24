@@ -96,6 +96,14 @@ public class CategoryFilteringTest {
         WebElement xColorButton = webDriver.findElement(By.cssSelector(".refinement--refinement_color > .refinement-show > .btn"));
         xColorButton.click();
 
+        WebElement priceFilter = webDriver.findElement(By.xpath("//li[@class='filter-bar-item' and contains(@title, 'Price:')]"));
+        WebElement sizeFilter = webDriver.findElement(By.xpath("//li[@class='filter-bar-item' and contains(@title, 'Size:')]"));
+        WebElement colorFilter = webDriver.findElement(By.xpath("//li[@class='filter-bar-item' and contains(@title, 'Colour:')]"));
+
+        assertEquals("Price: 120 € - 200 €", priceFilter.getText());
+        assertEquals("Size: 37.5", sizeFilter.getText());
+        assertEquals("Colour: Black", colorFilter.getText());
+
         Thread.sleep(5000);
     }
 
