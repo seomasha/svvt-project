@@ -8,9 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import static org.junit.jupiter.api.Assertions.*;
 
-public class AddToCartTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class ViewSizeGuideTest {
     private static WebDriver webDriver;
     private static String baseUrl;
 
@@ -27,50 +28,36 @@ public class AddToCartTest {
     }
 
     @Test
-    public void testAddToCart() throws InterruptedException { // Optimize timers.
+    public void testViewSizeGuide() throws InterruptedException {
         webDriver.get(baseUrl);
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         WebElement acceptCookiesButton = webDriver.findElement(By.id("onetrust-accept-btn-handler"));
         acceptCookiesButton.click();
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         WebElement closeButton = webDriver.findElement(By.id("wps-overlay-close-button"));
         closeButton.click();
 
         Thread.sleep(2000);
 
-        WebElement searchBar = webDriver.findElement(By.cssSelector(".search-box-for-web-desktop  .p-header-search-field"));
-        searchBar.click();
+        WebElement shoeItem = webDriver.findElement(By.cssSelector(".products-carousel-glide-slide:nth-child(3) .is-lazy-loaded > .product-recommendation-image"));
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", shoeItem);
         Thread.sleep(2000);
+        shoeItem.click();
 
-        searchBar.sendKeys("black shoes");
-
+        WebElement sizeGuide = webDriver.findElement(By.cssSelector(".size-chart-button"));
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", sizeGuide);
         Thread.sleep(2000);
+        sizeGuide.click();
 
-        webDriver.findElement(By.cssSelector(".search-box-for-web-desktop .icon")).click();
+        Thread.sleep(3000);
 
-        WebElement product = webDriver.findElement(By.linkText("Retaliate 3 Running Shoes Unisex"));
-        product.click();
+        WebElement checkSizeGuide = webDriver.findElement(By.cssSelector(".main-heading"));
+        String text = checkSizeGuide.getText();
+        assertEquals("International Size Conversions", text);
 
-        WebElement sizeField = webDriver.findElement(By.id("swatch-0290"));
-        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", sizeField);
-        Thread.sleep(2000);
-        sizeField.click();
-
-        Thread.sleep(2000);
-
-        WebElement addToCartButton = webDriver.findElement(By.cssSelector(".btn-full-width"));
-        addToCartButton.click();
-
-        Thread.sleep(2000);
-
-        WebElement viewCartButton = webDriver.findElement(By.cssSelector(".js-addToBagOverlay-quantity-total"));
-        viewCartButton.click();
-
-        String quantity = webDriver.findElement(By.cssSelector(".grand-total-number")).getText();
-        assertEquals("(1)", quantity);
         Thread.sleep(5000);
     }
 

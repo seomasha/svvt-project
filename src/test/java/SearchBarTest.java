@@ -20,6 +20,7 @@ public class SearchBarTest {
         System.setProperty("webdriver.chrome.driver", webDriverPath);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--start-maximized");
         webDriver = new ChromeDriver(options);
         baseUrl = "https://eu.puma.com/de/en/home";
     }

@@ -9,11 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RemoveFromCartTest {
+public class FavouritesTest {
     private static WebDriver webDriver;
     private static String baseUrl;
+    private static String email;
 
     @BeforeAll
     public static void setUp() {
@@ -25,35 +26,31 @@ public class RemoveFromCartTest {
         options.addArguments("--start-maximized");
         webDriver = new ChromeDriver(options);
         baseUrl = "https://eu.puma.com/de/en/home";
+        email = "sead.masetic@stu.ibu.edu.ba";
+        // for login with already registered account
     }
 
     @Test
-    public void testRemoveFromCart() throws InterruptedException {
+    public void testFavourites() throws InterruptedException {
         webDriver.get(baseUrl);
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         WebElement acceptCookiesButton = webDriver.findElement(By.id("onetrust-accept-btn-handler"));
         acceptCookiesButton.click();
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         WebElement closeButton = webDriver.findElement(By.id("wps-overlay-close-button"));
         closeButton.click();
 
         Thread.sleep(2000);
 
-        WebElement searchBar = webDriver.findElement(By.cssSelector(".search-box-for-web-desktop  .p-header-search-field"));
-        searchBar.click();
+        WebElement shoeItem = webDriver.findElement(By.cssSelector(".glide__slide--active .is-lazy-loaded > .product-recommendation-image"));
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", shoeItem);
         Thread.sleep(2000);
-
-        searchBar.sendKeys("black shoes");
+        shoeItem.click();
 
         Thread.sleep(2000);
-
-        webDriver.findElement(By.cssSelector(".search-box-for-web-desktop .icon")).click();
-
-        WebElement product = webDriver.findElement(By.linkText("Retaliate 3 Running Shoes Unisex"));
-        product.click();
 
         WebElement sizeField = webDriver.findElement(By.id("swatch-0290"));
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", sizeField);
@@ -62,28 +59,41 @@ public class RemoveFromCartTest {
 
         Thread.sleep(2000);
 
-        WebElement addToCartButton = webDriver.findElement(By.cssSelector(".btn-full-width"));
-        addToCartButton.click();
+        WebElement addToFavouritesButton = webDriver.findElement(By.cssSelector(".btn-add-to-wish-list-pdp"));
+        addToFavouritesButton.click();
 
         Thread.sleep(2000);
 
-        WebElement viewCartButton = webDriver.findElement(By.cssSelector(".js-addToBagOverlay-quantity-total"));
-        viewCartButton.click();
+        WebElement inputEmail = webDriver.findElement(By.id("login-form-email"));
+        inputEmail.click();
+        inputEmail.sendKeys("sead.masetic@stu.ibu.edu.ba");
 
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
-        WebElement removeFromCart = webDriver.findElement(By.cssSelector(".d-none .remove-product"));
-        removeFromCart.click();
+        WebElement continueWithPassword = webDriver.findElement(By.cssSelector(".btn-block:nth-child(3)"));
+        continueWithPassword.click();
 
         Thread.sleep(3000);
 
-        WebElement removeButton = webDriver.findElement(By.cssSelector(".cart-delete-confirmation-btn"));
-        removeButton.click();
+        WebElement inputPassword = webDriver.findElement(By.id("login-form-password"));
+        inputPassword.click();
+        inputPassword.sendKeys("P@ssw0r.d");
 
-        Thread.sleep(2000);
+        Thread.sleep(5000);
 
-        String quantity = webDriver.findElement(By.cssSelector(".grand-total-number")).getText();
-        assertEquals("(0)", quantity);
+        WebElement loginButton = webDriver.findElement(By.cssSelector(".btn:nth-child(5)"));
+        loginButton.click();
+
+        Thread.sleep(5000);
+
+        WebElement viewFavourites = webDriver.findElement(By.linkText("View Favourites"));
+        viewFavourites.click();
+
+        Thread.sleep(5000);
+
+        WebElement shoeName = webDriver.findElement(By.cssSelector(".line-item-header"));
+        String name = shoeName.getText();
+        assertEquals("Speedcat OG Sneakers Unisex", name);
         Thread.sleep(5000);
     }
 

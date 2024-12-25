@@ -2,13 +2,16 @@ import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PumaTest {
+public class ReturnPolicyTest {
     private static WebDriver webDriver;
     private static String baseUrl;
 
@@ -25,12 +28,28 @@ public class PumaTest {
     }
 
     @Test
-    public void testTitle() throws InterruptedException {
+    public void testReturnPolicy() throws InterruptedException {
         webDriver.get(baseUrl);
-        String actualTitle = webDriver.getTitle();
-        System.out.println("Actual title: " + actualTitle);
-        assertEquals("PUMA GERMANY | Shoes, Apparel and Accessories",
-                actualTitle, "Title does not match");
+
+        Thread.sleep(3000);
+        WebElement acceptCookiesButton = webDriver.findElement(By.id("onetrust-accept-btn-handler"));
+        acceptCookiesButton.click();
+
+        Thread.sleep(3000);
+
+        WebElement closeButton = webDriver.findElement(By.id("wps-overlay-close-button"));
+        closeButton.click();
+
+        Thread.sleep(2000);
+
+        WebElement returnPolicy = webDriver.findElement(By.linkText("Return Policy"));
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", returnPolicy);
+        Thread.sleep(2000);
+        returnPolicy.click();
+
+        WebElement checkReturnPolicy = webDriver.findElement(By.cssSelector("h2"));
+        String text = checkReturnPolicy.getText();
+        assertEquals("Return Policy", text);
         Thread.sleep(5000);
     }
 
