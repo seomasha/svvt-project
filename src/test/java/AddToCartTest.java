@@ -54,7 +54,7 @@ public class AddToCartTest {
         WebElement product = webDriver.findElement(By.linkText("Retaliate 3 Running Shoes Unisex"));
         product.click();
 
-        WebElement sizeField = webDriver.findElement(By.id("swatch-0290"));
+        WebElement sizeField = webDriver.findElement(By.id("swatch-0340"));
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", sizeField);
         Thread.sleep(2000);
         sizeField.click();
