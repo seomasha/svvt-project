@@ -30,7 +30,7 @@ public class RemoveFromFavouritesTest {
         // for login with already registered account
     }
 
-    @Test
+    @Test // Before running this test, run FavouritesTest
     public void testRemoveFavourites() throws InterruptedException {
         webDriver.get(baseUrl);
 
@@ -38,29 +38,20 @@ public class RemoveFromFavouritesTest {
         WebElement acceptCookiesButton = webDriver.findElement(By.id("onetrust-accept-btn-handler"));
         acceptCookiesButton.click();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
         WebElement closeButton = webDriver.findElement(By.id("wps-overlay-close-button"));
         closeButton.click();
 
         Thread.sleep(2000);
 
-        WebElement shoeItem = webDriver.findElement(By.cssSelector(".products-carousel-glide-slide:nth-child(2) .is-lazy-loaded > .product-recommendation-image"));
-        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", shoeItem);
-        Thread.sleep(2000);
-        shoeItem.click();
+        WebElement accountIcon = webDriver.findElement(By.cssSelector(".p-header-actions-icon--account"));
+        accountIcon.click();
 
         Thread.sleep(2000);
 
-        WebElement sizeField = webDriver.findElement(By.id("swatch-0290"));
-        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", sizeField);
-        Thread.sleep(2000);
-        sizeField.click();
-
-        Thread.sleep(2000);
-
-        WebElement addToFavouritesButton = webDriver.findElement(By.cssSelector(".btn-add-to-wish-list-pdp"));
-        addToFavouritesButton.click();
+        WebElement loginOrSignupButton = webDriver.findElement(By.linkText("LOGIN / SIGN UP"));
+        loginOrSignupButton.click();
 
         Thread.sleep(2000);
 
@@ -84,16 +75,16 @@ public class RemoveFromFavouritesTest {
         WebElement loginButton = webDriver.findElement(By.cssSelector(".btn:nth-child(5)"));
         loginButton.click();
 
-        Thread.sleep(8000);
+        Thread.sleep(7000);
 
-        WebElement viewFavourites = webDriver.findElement(By.linkText("View Favourites"));
+        WebElement viewFavourites = webDriver.findElement(By.className("p-header-actions-icon--wishlist"));
         viewFavourites.click();
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         WebElement shoeName = webDriver.findElement(By.cssSelector(".line-item-header"));
         String name = shoeName.getText();
-        assertEquals("Speedcat OG Sneakers Unisex", name);
+        assertEquals("Portugal 2025 Home Authentic Jersey Men", name);
 
         Thread.sleep(3000);
 

@@ -56,6 +56,8 @@ public class CategoryFilteringTest {
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("window.scrollBy(0, 500);");
 
+        Thread.sleep(3000);
+
         WebElement priceDropdown = webDriver.findElement(By.cssSelector(".refinement--product_price_de > .btn > span"));
         priceDropdown.click();
 
@@ -69,20 +71,22 @@ public class CategoryFilteringTest {
         WebElement xPriceButton = webDriver.findElement(By.cssSelector(".refinement--product_price_de > .refinement-show > .btn"));
         xPriceButton.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         WebElement sizeDropdown = webDriver.findElement(By.cssSelector(".refinement--size_facet > .btn"));
         sizeDropdown.click();
 
+        Thread.sleep(2000);
+
         WebElement fourthSize = webDriver.findElement(By.cssSelector("button[data-attribute='size_facet'][data-selected-alt*='37.5']"));
         fourthSize.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         WebElement xSizeButton = webDriver.findElement(By.cssSelector(".refinement--size_facet > .refinement-show > .btn"));
         xSizeButton.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         WebElement colorDropdown = webDriver.findElement(By.cssSelector(".refinement--refinement_color > .btn > span"));
         colorDropdown.click();
@@ -92,7 +96,7 @@ public class CategoryFilteringTest {
         WebElement firstColor = webDriver.findElement(By.cssSelector("button[data-attribute='refinement_color'][data-selected-alt*='black']"));
         firstColor.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         WebElement xColorButton = webDriver.findElement(By.cssSelector(".refinement--refinement_color > .refinement-show > .btn"));
         xColorButton.click();

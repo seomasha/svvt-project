@@ -26,7 +26,7 @@ public class RegistrationTest {
         options.addArguments("--start-maximized");
         webDriver = new ChromeDriver(options);
         baseUrl = "https://eu.puma.com/de/en/home";
-        email = "sead.masetic@stu.ibu.edu.ba"; // When running the test, always change to new email
+        email = "sead.masetic+test4@stu.ibu.edu.ba"; // When running the test, always change to new email
                                                 // for successful registration
     }
 
@@ -38,7 +38,7 @@ public class RegistrationTest {
         WebElement acceptCookiesButton = webDriver.findElement(By.id("onetrust-accept-btn-handler"));
         acceptCookiesButton.click();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
         WebElement closeButton = webDriver.findElement(By.id("wps-overlay-close-button"));
         closeButton.click();

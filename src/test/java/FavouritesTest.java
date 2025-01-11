@@ -26,7 +26,7 @@ public class FavouritesTest {
         options.addArguments("--start-maximized");
         webDriver = new ChromeDriver(options);
         baseUrl = "https://eu.puma.com/de/en/home";
-        email = "sead.masetic@stu.ibu.edu.ba";
+        email = "sead.masetic+test2@stu.ibu.edu.ba";
         // for login with already registered account
     }
 
@@ -38,7 +38,7 @@ public class FavouritesTest {
         WebElement acceptCookiesButton = webDriver.findElement(By.id("onetrust-accept-btn-handler"));
         acceptCookiesButton.click();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
         WebElement closeButton = webDriver.findElement(By.id("wps-overlay-close-button"));
         closeButton.click();
@@ -52,8 +52,8 @@ public class FavouritesTest {
 
         Thread.sleep(2000);
 
-        WebElement sizeField = webDriver.findElement(By.id("swatch-0290"));
-        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", sizeField);
+        WebElement sizeField = webDriver.findElement(By.id("swatch-0170"));
+        ((JavascriptExecutor) webDriver).executeScript("window.scrollBy(0, 800);", sizeField);
         Thread.sleep(2000);
         sizeField.click();
 
@@ -93,7 +93,7 @@ public class FavouritesTest {
 
         WebElement shoeName = webDriver.findElement(By.cssSelector(".line-item-header"));
         String name = shoeName.getText();
-        assertEquals("Speedcat OG Sneakers Unisex", name);
+        assertEquals("Portugal 2025 Home Authentic Jersey Men", name);
         Thread.sleep(5000);
     }
 

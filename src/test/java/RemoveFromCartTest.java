@@ -52,10 +52,10 @@ public class RemoveFromCartTest {
 
         webDriver.findElement(By.cssSelector(".search-box-for-web-desktop .icon")).click();
 
-        WebElement product = webDriver.findElement(By.linkText("Retaliate 3 Running Shoes Unisex"));
+        WebElement product = webDriver.findElement(By.linkText("Night Runner V3 Running Shoes"));
         product.click();
 
-        WebElement sizeField = webDriver.findElement(By.id("swatch-0290"));
+        WebElement sizeField = webDriver.findElement(By.id("swatch-0300"));
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", sizeField);
         Thread.sleep(2000);
         sizeField.click();

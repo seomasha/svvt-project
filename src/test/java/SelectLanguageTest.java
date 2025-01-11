@@ -34,7 +34,7 @@ public class SelectLanguageTest {
         WebElement acceptCookiesButton = webDriver.findElement(By.id("onetrust-accept-btn-handler"));
         acceptCookiesButton.click();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
         WebElement closeButton = webDriver.findElement(By.id("wps-overlay-close-button"));
         closeButton.click();
